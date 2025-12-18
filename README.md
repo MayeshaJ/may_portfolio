@@ -1,7 +1,3 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # Mayesha's Creative Portfolio
 
 A modern, neobrutalist portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features interactive 3D graphics, smooth animations, and a unique design aesthetic.
@@ -29,12 +25,7 @@ A modern, neobrutalist portfolio website built with Next.js, TypeScript, and Tai
    npm install
    ```
 
-2. (Optional) Set environment variables in `.env.local`:
-   ```bash
-   GEMINI_API_KEY=your_api_key_here
-   ```
-
-3. Run the development server:
+2. Run the development server:
    ```bash
    npm run dev
    ```
@@ -70,21 +61,3 @@ A modern, neobrutalist portfolio website built with Next.js, TypeScript, and Tai
 └── public/            # Static assets
 ```
 
-## Deployment
-
-This project can be deployed on Vercel, Netlify, or any platform that supports Next.js.
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Vercel will automatically detect Next.js and configure the build
-
-## Features
-
-- 🎨 Neobrutalist design with custom color palette
-- 🎭 Smooth animations with Framer Motion
-- 🎪 Interactive 3D background scene
-- 📱 Fully responsive design
-- ⚡ Optimized with Next.js App Router
-- 🎯 TypeScript for type safety
