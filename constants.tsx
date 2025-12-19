@@ -29,14 +29,15 @@ export const COURSES = [
 ];
 
 export const PROJECTS: Project[] = [
-  // {
-  //   id: 'p5',
-  //   title: 'Stonks: Trading Sim',
-  //   description: 'A high-frequency trading simulation platform powered by Node.js. Implemented asynchronous trade logic handling real-time market data. Integrated MongoDB for persistent portfolio management and complex user authentication.',
-  //   tech: ['Node.js', 'MongoDB', 'REST API', 'JavaScript', 'WebSockets'],
-  //   color: 'bg-neo-green',
-  //   category: 'Simulation'
-  // },
+  {
+    id: 'p5',
+    title: 'Stonks: Trading Sim',
+    description: 'A high-frequency trading simulation platform powered by Node.js. Implemented asynchronous trade logic handling real-time market data. Integrated MongoDB for persistent portfolio management and complex user authentication.',
+    tech: ['Node.js', 'MongoDB', 'REST API', 'JavaScript', 'WebSockets'],
+    color: 'bg-neo-green',
+    category: 'Simulation',
+    link: 'https://github.com/MayeshaJ/Stonks'
+  },
   // {
   //   id: 'p4',
   //   title: 'Catch a Fish',
@@ -51,7 +52,8 @@ export const PROJECTS: Project[] = [
     description: 'Employee performance review portal optimizing HR workflows. Implemented multi-threading for concurrent user actions, achieving a 20% reduction in response times during peak usage.',
     tech: ['Python', 'SQL Server', 'Threading', 'Flask'],
     color: 'bg-neo-yellow',
-    category: 'Web'
+    category: 'Web',
+    link: 'https://github.com/MayeshaJ/Feedback-Flow'
   },
   {
     id: 'p1',
@@ -59,7 +61,8 @@ export const PROJECTS: Project[] = [
     description: 'A production-grade RAG system combining OpenAI embeddings and MS MARCO reranking. Enables users to query uploaded documents with natural language, receiving precision-scored answers with inline citations.',
     tech: ['Python', 'FastAPI', 'Next.js', 'OpenAI', 'RAG', 'NLP'],
     color: 'bg-neo-purple',
-    category: 'AI'
+    category: 'AI',
+    link: 'https://github.com/fazoha/Intelligent-Document-Q-A-System'
   },
   {
     id: 'p2',
@@ -67,7 +70,8 @@ export const PROJECTS: Project[] = [
     description: 'Cross-platform mobile app connecting sports enthusiasts. Integrated full Firebase Suite for real-time game sync and push notifications. Designed a FIFA-inspired UI with custom painters for dynamic player cards.',
     tech: ['Flutter', 'Dart', 'Firebase', 'Mobile', 'iOS/Android'],
     color: 'bg-neo-orange',
-    category: 'Mobile'
+    category: 'Mobile',
+    link: 'https://github.com/MayeshaJ/gr13-gamelink-fall-2025'
   }
 ];
 
@@ -79,6 +83,7 @@ export const EXPERIENCE: Experience[] = [
     location: 'Pickering, ON',
     period: 'Sep 2024 - Aug 2025',
     details: [
+      'Facilated data communication from nuclear power plant and hydro power plant stations to directors and engineers to help them make informed decisions',
       'Developed scalable internal tools and data visualization suites using Python OOP, SQL Server, and Power BI, while managing deployments through Azure release cycles to modernize legacy data systems'
     ],
     color: 'bg-neo-orange',

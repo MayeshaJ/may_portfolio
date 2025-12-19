@@ -67,9 +67,9 @@ const HowIThink: FC = () => {
                BACKEND OF <br className="md:hidden"/>MY BRAIN
              </h2>
           </motion.div>
-          <p className="font-mono text-xl max-w-2xl border-l-4 border-neo-pink pl-4 ml-2">
-             I don't just write code; I engineer systems. <br/>
-             My process balances structural logic with creative experimentation.
+          <p className="font-mono text-xl max-w-5xl border-l-4 border-neo-pink pl-4 ml-2">
+          I operate at the intersection of logic and lifestyle. My days are a series of intentional loops: balancing the discipline of LeetCode sprints and skincare steps with inspiration of a good doomscroll.<br/>
+          I’m a planner by nature, a developer by trade, and a vibecoder by choice.
           </p>
         </div>
 

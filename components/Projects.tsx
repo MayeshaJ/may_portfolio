@@ -141,18 +141,13 @@ const ProjectSection: React.FC<{ project: Project, index: number }> = ({ project
             <div className="flex gap-4">
               <motion.a 
                 href={project.link || "#"} 
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, x: 5 }}
                 className="flex items-center gap-2 bg-neo-black text-white px-8 py-4 font-bold text-lg border-2 border-transparent hover:bg-neo-pink hover:text-neo-black hover:border-neo-black transition-all shadow-neo hover:shadow-neo-hover"
               >
                 <Github size={20} /> View Code
               </motion.a>
-              {/* Optional second button if a live link exists */}
-              <motion.button 
-                whileHover={{ scale: 1.05, x: 5 }}
-                className="flex items-center gap-2 bg-white px-8 py-4 font-bold text-lg border-2 border-neo-black hover:bg-neo-yellow transition-all shadow-neo hover:shadow-neo-hover"
-              >
-                Details <ArrowRight size={20} />
-              </motion.button>
             </div>
           </motion.div>
         </div>
@@ -184,7 +179,7 @@ const Projects: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              WORKS
+              PROJECTS
             </motion.span>
           </motion.h2>
           <motion.p 
@@ -194,9 +189,8 @@ const Projects: React.FC = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            A collection of experiments, simulations, and tools engineered for impact.
+            A collection of prototypes, simulations, and tools engineered for impact.
             <br />
-            <span className="text-sm opacity-60 mt-2 block">(Scroll to explore the archives)</span>
           </motion.p>
         </div>
       </div>

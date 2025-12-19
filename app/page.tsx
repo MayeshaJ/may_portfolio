@@ -16,6 +16,34 @@ const ThreeScene = dynamic(() => import('@/components/ThreeScene'), {
   loading: () => null
 })
 
+const OpenToWorkButton = () => {
+  return (
+    <div className="fixed bottom-6 right-6 z-40 hidden md:block">
+      <div className="relative w-28 h-28 animate-spin-slow">
+        {/* 
+          Adjusted viewBox and textPath for perfect centering.
+          cx, cy = 50, 50. Radius approx 35-40 for text path.
+        */}
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <defs>
+              <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
+          </defs>
+          <text fontSize="11.5" fontWeight="bold" fill="#1a1a1a" letterSpacing="2px">
+              <textPath href="#circlePath" startOffset="0%">
+                OPEN TO WORK • OPEN TO WORK •
+              </textPath>
+          </text>
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-12 h-12 bg-neo-green rounded-full border-2 border-neo-black flex items-center justify-center">
+            <span className="text-xl">👋</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -59,8 +87,8 @@ const Navigation = () => {
            <div className="absolute right-0 top-full mt-4 w-48 bg-white border-2 border-neo-black shadow-neo p-2 transform origin-top-right transition-all">
               <ul className="space-y-2 font-mono text-sm">
                 {[
-                  { label: 'About', id: 'hero' },
-                  { label: 'Cognition', id: 'mind' },
+                  { label: 'Hi', id: 'hero' },
+                  { label: 'Intro', id: 'mind' },
                   { label: 'Education', id: 'education' },
                   { label: 'Projects', id: 'projects' },
                   { label: 'Experience', id: 'experience' },
@@ -74,9 +102,6 @@ const Navigation = () => {
                     {item.label}
                   </li>
                 ))}
-                 <li className="p-2 text-xs text-gray-500 mt-2 border-t border-gray-200 pt-2">
-                    Current Mood: Coding 👩‍💻
-                 </li>
               </ul>
            </div>
          )}
@@ -116,31 +141,7 @@ export default function Home() {
       </main>
       
       {/* Sticky Action Button - Centered Text Alignment Fix */}
-      <div className="fixed bottom-6 right-6 z-40 hidden md:block">
-        <a href="mailto:mayesha0905@gmail.com" className="block">
-            <div className="relative w-28 h-28 animate-spin-slow group cursor-pointer">
-                {/* 
-                  Adjusted viewBox and textPath for perfect centering.
-                  cx, cy = 50, 50. Radius approx 35-40 for text path.
-                */}
-                <svg viewBox="0 0 100 100" width="100%" height="100%">
-                  <defs>
-                      <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
-                  </defs>
-                  <text fontSize="11.5" fontWeight="bold" fill="#1a1a1a" letterSpacing="2px">
-                      <textPath href="#circlePath" startOffset="0%">
-                        OPEN TO WORK • OPEN TO WORK •
-                      </textPath>
-                  </text>
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 bg-neo-green rounded-full border-2 border-neo-black group-hover:scale-110 transition-transform flex items-center justify-center">
-                      <span className="text-xl">👋</span>
-                    </div>
-                </div>
-            </div>
-        </a>
-      </div>
+      <OpenToWorkButton />
     </div>
   )
 }
