@@ -40,13 +40,6 @@ const Education: React.FC = () => {
                 <Award size={20} />
                 <span>{RESUME_DATA.education.honors[0]}</span>
              </div>
-             
-             <h4 className="font-bold font-mono mb-4 border-b border-neo-black inline-block">Relevant Coursework</h4>
-             <div className="flex flex-wrap gap-3">
-               {COURSES.map((c, i) => (
-                 <CourseTag key={c} course={c} index={i} />
-               ))}
-             </div>
            </div>
         </div>
 

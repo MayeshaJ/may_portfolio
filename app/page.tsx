@@ -28,7 +28,7 @@ const OpenToWorkButton = () => {
           <defs>
               <path id="circlePath" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
           </defs>
-          <text fontSize="11.5" fontWeight="bold" fill="#1a1a1a" letterSpacing="2px">
+          <text fontSize="10" fontWeight="bold" fill="#1a1a1a" letterSpacing="2px">
               <textPath href="#circlePath" startOffset="0%">
                 OPEN TO WORK • OPEN TO WORK •
               </textPath>
@@ -36,7 +36,7 @@ const OpenToWorkButton = () => {
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 bg-neo-green rounded-full border-2 border-neo-black flex items-center justify-center">
-            <span className="text-xl">👋</span>
+            
           </div>
         </div>
       </div>

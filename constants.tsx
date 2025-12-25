@@ -5,7 +5,7 @@ import { Project, Experience, SkillCategory } from './types';
 export const RESUME_DATA = {
   name: "Mayesha Jashim",
   title: "Computer Science Student",
-  tagline: "Just a girlie in STEM architecting the simulations",
+  tagline: "Just a girlie in STEM",
   education: {
     school: "Memorial University of Newfoundland",
     degree: "Bachelor's, Computer Science",
@@ -20,13 +20,6 @@ export const RESUME_DATA = {
     phone: "+1 (709) 690-4954"
   }
 };
-
-export const COURSES = [
-  "Data Structures & Algorithms", "Software Engineering", "Intro to AI", 
-  "Machine Learning", "Operating Systems", "Computer Networking",
-  "Human Computer Interaction", "Nature Inspired Computing", "Data Mining",
-  "Object-Oriented Programming", "Computer Architecture", "Web Programming"
-];
 
 export const PROJECTS: Project[] = [
   {
@@ -48,8 +41,8 @@ export const PROJECTS: Project[] = [
   // },
   {
     id: 'p3',
-    title: 'FeedbackFlow',
-    description: 'Employee performance review portal optimizing HR workflows. Implemented multi-threading for concurrent user actions, achieving a 20% reduction in response times during peak usage.',
+    title: 'Feedback Flow',
+    description: 'Employee performance review portal optimizing HR workflows. Implemented multi-threading for concurrent user actions.',
     tech: ['Python', 'SQL Server', 'Threading', 'Flask'],
     color: 'bg-neo-yellow',
     category: 'Web',
@@ -57,8 +50,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'p1',
-    title: 'DocuQuery AI',
-    description: 'A production-grade RAG system combining OpenAI embeddings and MS MARCO reranking. Enables users to query uploaded documents with natural language, receiving precision-scored answers with inline citations.',
+    title: 'Docu Query AI',
+    description: 'A RAG system combining OpenAI embeddings and MS MARCO reranking. Enables users to query uploaded documents with natural language, receiving precision-scored answers with inline citations.',
     tech: ['Python', 'FastAPI', 'Next.js', 'OpenAI', 'RAG', 'NLP'],
     color: 'bg-neo-purple',
     category: 'AI',

@@ -40,8 +40,6 @@ const Hero: React.FC = () => {
         <div className="bg-white border-2 border-neo-black p-2 shadow-neo-sm w-40 h-40 flex flex-col items-center justify-center gap-2 hover:-rotate-12 transition-transform">
           <span className="font-mono text-xs font-bold bg-neo-green px-2">GPA 3.7</span>
           <span className="font-mono text-xs font-bold bg-neo-orange px-2">Dean's List</span>
-          <div className="w-full h-1 bg-neo-black mt-2"></div>
-          <span className="text-4xl">🚀</span>
         </div>
       </DraggableSticker>
 
@@ -90,7 +88,7 @@ const Hero: React.FC = () => {
         >
           <div className="bg-white border-4 border-neo-black p-6 shadow-neo transform rotate-1 hover:rotate-0 transition-transform duration-300">
             <p className="font-mono text-lg md:text-xl font-bold text-neo-black">
-            Just a girlie in STEM architecting the <br className="md:hidden"/>simulations
+            Just a girlie in STEM
             </p>
           </div>
         </motion.div>

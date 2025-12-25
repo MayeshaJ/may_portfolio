@@ -21,8 +21,8 @@ const Contact = () => {
   };
 
   return (
-    <section className="min-h-[80vh] bg-neo-pink flex flex-col justify-between pt-24 pb-12 px-6 border-t-4 border-neo-black relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+    <section className="min-h-[70vh] bg-neo-pink flex flex-col justify-center items-center px-6 border-t-4 border-neo-black relative overflow-hidden">
+      <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center justify-center">
         <div className="inline-block bg-white border-2 border-neo-black px-4 py-1 font-mono text-sm mb-6 shadow-neo rounded-full">
           Status: Open for Full-time
         </div>
@@ -59,10 +59,10 @@ const Contact = () => {
              </div>
            </a>
         </div>
-      </div>
 
-      <div className="text-center mt-24 font-mono text-sm font-bold flex flex-col items-center gap-2">
-        <p>Designed with <Heart className="inline w-4 h-4 text-red-500 fill-current" /> by Mayesha</p>
+        <div className="mt-16 font-mono text-sm font-bold flex flex-col items-center gap-2">
+          <p>Designed with <Heart className="inline w-4 h-4 text-red-500 fill-current" /> by Mayesha</p>
+        </div>
       </div>
     </section>
   );

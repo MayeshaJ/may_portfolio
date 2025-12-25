@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { PROJECTS } from '@/constants';
 import { Project } from '@/types';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
@@ -16,191 +16,176 @@ const GraphicMap: Record<string, React.ReactNode> = {
   'p6': <GameLinkGraphic />    // Additional project slot
 };
 
-const ProjectSection: React.FC<{ project: Project, index: number }> = ({ project, index }) => {
-  const isEven = index % 2 === 0;
+const ProjectSection: React.FC<{ project: Project, index: number, total: number }> = ({ project, index, total }) => {
   const GraphicComponent = GraphicMap[project.id];
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track the scroll progress of this specific section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Create a "dimming/scaling" effect as the card gets covered by the next one
+  // We only want this to happen to cards that are NOT the last one
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
+  const shadowOpacity = useTransform(scrollYProgress, [0, 1], [0.3, 0]);
 
   return (
-    <section className={`min-h-[90vh] flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} border-b-4 border-neo-black relative overflow-hidden`}>
-      
-      {/* Visual/Graphic Side (50%) */}
-      <div className={`w-full md:w-1/2 min-h-[50vh] md:min-h-full relative border-b-4 md:border-b-0 ${isEven ? 'md:border-r-4' : 'md:border-l-4'} border-neo-black bg-neo-bg overflow-hidden group`}>
-        {/* The Interactive Graphic */}
-        <motion.div 
-          className="absolute inset-0 z-0"
-          initial={{ opacity: 0, scale: 1.1 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {GraphicComponent}
-        </motion.div>
-        
-        {/* Overlay Label */}
-        <motion.div 
-          className="absolute top-6 left-6 z-10"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-           <span className={`inline-block px-4 py-2 ${project.color} border-2 border-neo-black font-mono font-bold shadow-neo`}>
-             VISUALIZATION_MODE: ON
-           </span>
-        </motion.div>
-      </div>
+    <div 
+      ref={containerRef}
+      className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 md:px-10"
+      style={{ 
+        zIndex: (index + 1) * 10,
+        // Small offset so headers stack slightly if you wanted, 
+        // but here we use it for a clean full overlap with z-index
+      }}
+    >
+      <motion.div 
+        style={{ 
+          scale: index === total - 1 ? 1 : scale,
+          opacity: index === total - 1 ? 1 : opacity,
+        }}
+        className="max-w-7xl w-full"
+      >
+        {/* The Unified Window Container */}
+        <div className="bg-white border-4 border-neo-black shadow-[12px_12px_0px_0px_#1a1a1a] rounded-lg overflow-hidden flex flex-col">
+          
+          {/* Window Title Bar */}
+          <div className="bg-neo-black p-4 flex items-center justify-between border-b-4 border-neo-black">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-neo-orange border border-white/20" />
+              <div className="w-3 h-3 rounded-full bg-neo-yellow border border-white/20" />
+              <div className="w-3 h-3 rounded-full bg-neo-green border border-white/20" />
+            </div>
+            <div className="text-white font-mono text-xs font-bold tracking-widest uppercase flex items-center gap-4">
+              <span className="opacity-50">PROJ_0{index + 1}</span>
+              <span className="hidden sm:inline">//</span>
+              <span>{project.title}</span>
+            </div>
+            <div className="flex gap-2 opacity-0 md:opacity-100">
+               <div className="w-4 h-1 bg-white/30" />
+               <div className="w-4 h-1 bg-white/30" />
+            </div>
+          </div>
 
-      {/* Content Side (50%) */}
-      <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center bg-white relative">
-        
-        <div className="max-w-xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div 
-              className="flex items-center gap-4 mb-6"
-              initial={{ opacity: 0, y: -10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-            >
-               <motion.span 
-                 className="font-mono text-6xl font-bold opacity-10 stroke-black" 
-                 style={{ WebkitTextStroke: '2px #1a1a1a', color: 'transparent' }}
-                 initial={{ scale: 0.8, opacity: 0 }}
-                 whileInView={{ scale: 1, opacity: 0.1 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-               >
-                 0{index + 1}
-               </motion.span>
-               <motion.span 
-                 className={`px-3 py-1 border border-neo-black rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-gray-100`}
-                 initial={{ opacity: 0, scale: 0.8 }}
-                 whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: 0.3, duration: 0.4 }}
-               >
-                  {project.category}
-               </motion.span>
-            </motion.div>
+          {/* Main Layout Area */}
+          <div className="flex flex-col md:flex-row h-full">
+            
+            {/* Left/Graphic Side: "The Live Viewport" */}
+            <div className={`relative w-full md:w-3/5 min-h-[300px] md:min-h-[550px] ${project.color} border-b-4 md:border-b-0 md:border-r-4 border-neo-black group overflow-hidden`}>
+              <div className="absolute inset-0 z-0">
+                {GraphicComponent}
+              </div>
+              
+              {/* Overlay Label */}
+              {/* <div className="absolute top-4 left-4 z-10">
+                <div className="bg-neo-black text-white px-3 py-1 font-mono text-[10px] font-bold flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  LIVE_SYSTEM_RENDER
+                </div>
+              </div> */}
 
-            <motion.h2 
-              className="font-display text-5xl md:text-7xl font-bold mb-8 leading-none"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              {project.title}
-            </motion.h2>
+              {/* Coordinate Grid Overlay */}
+              <div className="absolute inset-0 opacity-10 pointer-events-none" 
+                   style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+            </div>
 
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-            >
-              <motion.div 
-                className="w-12 h-2 bg-neo-black mb-8"
-                initial={{ width: 0 }}
-                whileInView={{ width: 48 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              />
-              <motion.p 
-                className="font-mono text-lg leading-relaxed text-gray-800"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-              >
-                {project.description}
-              </motion.p>
-            </motion.div>
+            {/* Right/Content Side: "The Inspector Panel" */}
+            <div className="w-full md:w-2/5 p-6 md:p-10 flex flex-col bg-white">
+              <div className="mb-4 flex justify-between items-start">
+                 <span className={`px-4 py-1 border-2 border-neo-black font-mono font-bold text-xs uppercase ${project.color} shadow-neo-sm`}>
+                   {project.category}
+                 </span>
+                 <span className="font-mono text-4xl font-black opacity-10 leading-none">
+                    0{index + 1}
+                 </span>
+              </div>
 
-            <div className="flex flex-wrap gap-2 mb-10">
-              {project.tech.map((t, techIndex) => (
-                <motion.span 
-                  key={t}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: techIndex * 0.1, duration: 0.3 }}
-                  className={`px-3 py-1 border-2 border-neo-black text-sm font-bold shadow-[2px_2px_0px_0px_#1a1a1a] ${project.color} bg-opacity-30`}
+              <h2 className="font-display text-3xl md:text-5xl font-extrabold mb-4 leading-tight uppercase tracking-tighter">
+                {project.title}
+              </h2>
+
+              <div className="flex-grow space-y-4">
+                <div className="bg-gray-50 border-2 border-neo-black p-4 font-mono text-sm leading-relaxed relative">
+                  <div className="absolute -top-3 left-3 bg-neo-black text-white px-2 py-0.5 text-[10px]">DESCRIPTION.TXT</div>
+                  {project.description}
+                </div>
+
+                <div className="space-y-2">
+                  <h4 className="font-mono text-[10px] font-bold uppercase text-gray-400">Environment_Variables:</h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span key={t} className="px-2 py-0.5 bg-white border border-neo-black text-[10px] font-mono font-bold shadow-neo-sm">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <motion.a 
+                  href={project.link || "#"} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex-1 flex items-center justify-center gap-2 bg-neo-black text-white px-4 py-3 font-bold text-xs border-2 border-neo-black hover:bg-white hover:text-neo-black transition-all shadow-neo"
                 >
-                  {t}
-                </motion.span>
-              ))}
+                  <Github size={16} /> OPEN_SOURCE
+                </motion.a>
+                <motion.button 
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`flex-1 flex items-center justify-center gap-2 bg-white px-4 py-3 font-bold text-xs border-2 border-neo-black hover:bg-neo-yellow transition-all shadow-neo`}
+                >
+                  DETAILS <ArrowRight size={16} />
+                </motion.button>
+              </div>
             </div>
-
-            <div className="flex gap-4">
-              <motion.a 
-                href={project.link || "#"} 
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, x: 5 }}
-                className="flex items-center gap-2 bg-neo-black text-white px-8 py-4 font-bold text-lg border-2 border-transparent hover:bg-neo-pink hover:text-neo-black hover:border-neo-black transition-all shadow-neo hover:shadow-neo-hover"
-              >
-                <Github size={20} /> View Code
-              </motion.a>
-            </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
-
-    </section>
+      </motion.div>
+    </div>
   );
 };
 
 const Projects: React.FC = () => {
   return (
-    <div className="bg-white">
-      {/* Section Header */}
-      <div className="py-24 px-6 border-b-4 border-neo-black bg-neo-yellow/20">
+    <div className="bg-neo-bg">
+      {/* Section Header - This will scroll away normally */}
+      <div className="py-24 px-6 border-b-4 border-neo-black bg-neo-yellow/10">
         <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            className="font-display text-6xl md:text-9xl font-bold text-neo-black mb-4"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <h2 className="font-display text-6xl md:text-9xl font-bold text-neo-black mb-4 leading-none">
             SELECTED<br />
-            <motion.span 
-              className="pl-20 md:pl-40 text-stroke-2 text-transparent bg-clip-text bg-gradient-to-r from-neo-pink to-neo-purple" 
-              style={{ WebkitTextStroke: '3px #1a1a1a' }}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              PROJECTS
-            </motion.span>
-          </motion.h2>
-          <motion.p 
-            className="font-mono text-xl md:text-2xl max-w-2xl mt-8 border-l-4 border-neo-black pl-6"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            A collection of prototypes, simulations, and tools engineered for impact.
-            <br />
-          </motion.p>
+            <span className="md:pl-40 text-transparent bg-clip-text bg-gradient-to-r from-neo-pink to-neo-purple" style={{ WebkitTextStroke: '3px #1a1a1a' }}>
+              WORKS
+            </span>
+          </h2>
+          <div className="max-w-2xl mt-8 border-l-8 border-neo-black pl-8">
+            <p className="font-mono text-xl md:text-2xl font-bold uppercase tracking-tighter">
+              A collection of prototypes, simulations, and tools.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Vertical Project Stack */}
-      <div>
+      {/* The Sticky Stacking Container */}
+      <div className="relative bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px]">
         {PROJECTS.map((project, index) => (
-          <ProjectSection key={project.id} project={project} index={index} />
+          <ProjectSection 
+            key={project.id} 
+            project={project} 
+            index={index} 
+            total={PROJECTS.length} 
+          />
         ))}
       </div>
+      
+      {/* Spacer so the last project doesn't feel like it ends too abruptly */}
+      <div className="h-20 bg-neo-bg border-t-4 border-neo-black" />
     </div>
   );
 };
