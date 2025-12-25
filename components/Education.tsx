@@ -2,19 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { RESUME_DATA, COURSES } from '@/constants';
+import { RESUME_DATA } from '@/constants';
 import { BookOpen, Award } from 'lucide-react';
-
-const CourseTag: React.FC<{ course: string, index: number }> = ({ course, index }) => (
-  <motion.span 
-    initial={{ opacity: 0, scale: 0.8 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ delay: index * 0.05 }}
-    className="inline-block bg-white border border-neo-black px-3 py-1 text-sm font-mono shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all cursor-default"
-  >
-    {course}
-  </motion.span>
-);
 
 const Education: React.FC = () => {
   return (
