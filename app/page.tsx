@@ -18,8 +18,8 @@ const ThreeScene = dynamic(() => import('@/components/ThreeScene'), {
 
 const OpenToWorkButton = () => {
   return (
-    <div className="fixed bottom-6 right-6 z-40 hidden md:block">
-      <div className="relative w-28 h-28 animate-spin-slow">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 hidden md:block">
+      <div className="relative w-20 h-20 md:w-28 md:h-28 animate-spin-slow">
         {/* 
           Adjusted viewBox and textPath for perfect centering.
           cx, cy = 50, 50. Radius approx 35-40 for text path.
@@ -74,13 +74,13 @@ const Navigation = () => {
   }, [isOpen])
 
   return (
-    <nav className="fixed top-6 right-6 z-50">
+    <nav className="fixed top-4 right-4 md:top-6 md:right-6 z-50">
       <div className="relative" ref={menuRef}>
          <button 
            onClick={() => setIsOpen(!isOpen)}
-           className="bg-white border-2 border-neo-black p-3 shadow-neo hover:shadow-neo-hover hover:-translate-y-1 transition-all rounded-full"
+           className="bg-white border-2 border-neo-black p-2 md:p-3 shadow-neo hover:shadow-neo-hover hover:-translate-y-1 transition-all rounded-full"
          >
-           <Menu size={24} />
+           <Menu size={20} className="md:w-6 md:h-6" />
          </button>
          
          {isOpen && (

@@ -21,19 +21,19 @@ const Contact = () => {
   };
 
   return (
-    <section className="min-h-[70vh] bg-neo-pink flex flex-col justify-center items-center px-6 border-t-4 border-neo-black relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center justify-center">
-        <div className="inline-block bg-white border-2 border-neo-black px-4 py-1 font-mono text-sm mb-6 shadow-neo rounded-full">
+    <section className="min-h-[70vh] bg-neo-pink flex flex-col justify-center items-center px-4 md:px-6 pt-16 md:pt-20 pb-12 border-t-4 border-neo-black relative overflow-hidden">
+      <div className="w-full max-w-screen-lg mx-auto text-center relative z-10 flex flex-col items-center justify-center">
+        <div className="inline-block bg-white border-2 border-neo-black px-4 py-1 font-mono text-xs md:text-sm mb-12 md:mb-16 shadow-neo rounded-full">
           Status: Open for Full-time
         </div>
         
-        <h2 className="font-display text-6xl md:text-8xl font-bold mb-8 leading-none">
+        <h2 className="font-display text-5xl md:text-8xl font-bold mb-8 leading-none">
           LET'S BUILD <br />
           <span className="text-white" style={{ textShadow: '4px 4px 0px #000' }}>SOMETHING</span> <br />
           COOL.
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-6 mt-12">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-8 md:mt-12">
            <button 
              onClick={handleEmailClick}
              className="group relative"

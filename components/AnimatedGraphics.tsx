@@ -8,22 +8,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 // ==========================================
 
 export const LogicGrid = () => {
-  const cells = Array.from({ length: 25 });
+  // Use more cells to cover ultra-wide monitors
+  const cells = Array.from({ length: 100 });
   return (
-    <div className="w-full h-full flex flex-wrap gap-1 p-2">
+    <div className="w-full h-full grid grid-cols-[repeat(auto-fill,minmax(80px,1fr))] auto-rows-[80px] md:grid-cols-[repeat(auto-fill,minmax(120px,1fr))] md:auto-rows-[120px] gap-2 md:gap-4 p-2 md:p-4">
       {cells.map((_, i) => (
         <motion.div
           key={i}
-          className="w-[18%] h-[18%] bg-neo-black rounded-sm opacity-20"
+          className="bg-neo-black rounded-sm opacity-10"
           animate={{
-            opacity: [0.2, 0.8, 0.2],
-            scale: [1, 0.9, 1],
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 0.98, 1],
             backgroundColor: ["#1a1a1a", "#ff90e8", "#1a1a1a"]
           }}
           transition={{
-            duration: Math.random() * 2 + 1,
+            duration: Math.random() * 3 + 2,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: Math.random() * 5,
             ease: "easeInOut"
           }}
         />

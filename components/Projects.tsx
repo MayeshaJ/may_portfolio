@@ -74,7 +74,7 @@ const ProjectSection: React.FC<{ project: Project, index: number, total: number 
           <div className="flex flex-col md:flex-row h-full">
             
             {/* Left/Graphic Side: "The Live Viewport" */}
-            <div className={`relative w-full md:w-3/5 min-h-[300px] md:min-h-[550px] ${project.color} border-b-4 md:border-b-0 md:border-r-4 border-neo-black group overflow-hidden`}>
+            <div className={`relative w-full md:w-3/5 min-h-[20rem] md:min-h-[35rem] ${project.color} border-b-4 md:border-b-0 md:border-r-4 border-neo-black group overflow-hidden`}>
               <div className="absolute inset-0 z-0">
                 {GraphicComponent}
               </div>
@@ -161,7 +161,7 @@ const Projects: React.FC = () => {
           <h2 className="font-display text-6xl md:text-9xl font-bold text-neo-black mb-4 leading-none">
             SELECTED<br />
             <span className="md:pl-40 text-transparent bg-clip-text bg-gradient-to-r from-neo-pink to-neo-purple" style={{ WebkitTextStroke: '3px #1a1a1a' }}>
-              WORKS
+              PROJECTS
             </span>
           </h2>
           <div className="max-w-2xl mt-8 border-l-8 border-neo-black pl-8">

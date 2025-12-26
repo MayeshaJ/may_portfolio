@@ -147,9 +147,9 @@ const Experience: React.FC = () => {
   }, [EXPERIENCE.length]);
 
   return (
-    <section className="py-24 bg-[#f0f0f0] relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <h2 className="font-display text-5xl md:text-7xl font-bold text-center mb-20 text-neo-black uppercase" style={{ WebkitTextStroke: '1px black' }}>
+    <section className="py-16 md:py-24 bg-[#f0f0f0] relative overflow-hidden">
+      <div className="w-full max-w-screen-xl mx-auto px-4 md:px-6 relative z-10">
+        <h2 className="font-display text-4xl md:text-7xl font-bold text-center mb-12 md:mb-20 text-neo-black uppercase" style={{ WebkitTextStroke: '1px black' }}>
           The Journey
         </h2>
 

@@ -68,16 +68,16 @@ const HowIThink: FC = () => {
              </h2>
           </motion.div>
           <p className="font-mono text-xl max-w-5xl border-l-4 border-neo-pink pl-4 ml-2">
-          My days are running on loops: balancing the discipline of LeetCode sprints and skincare steps with inspiration of a good doomscroll.<br/>
+          My days are running on loops: LeetCode sprints and skincare steps and occasional doomscroll.<br/>
           I’m a planner by nature, a developer by trade, and a vibecoder by choice.
           </p>
         </div>
 
-        {/* BENTO GRID LAYOUT - Increased height to 500px for better graphic fit */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[450px]">
+        {/* BENTO GRID LAYOUT - Fluid heights for better responsiveness */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto md:auto-rows-[28rem]">
           
           {/* Slot 1: Rapid Iteration (Large) */}
-          <div className="md:col-span-8">
+          <div className="md:col-span-8 min-h-[300px] md:min-h-0">
              <FeatureCard 
               title="Rapid Iteration" 
               subtitle="Fail fast, learn faster. Whether it's a hackathon or a production deploy."
@@ -92,7 +92,7 @@ const HowIThink: FC = () => {
           <div className="md:col-span-4 md:row-span-2">
             <FeatureCard 
               title="Technical Leadership" 
-              subtitle="Guiding teams through chaos. Transforming individual potential into synchronized execution."
+              subtitle="I'm big on figuring out everyone's strengths and then mapping out the best route for us to actually get the project across the finish line."
               graphic={<TeamSync />}
               color="bg-neo-cyan"
               icon={Users}
@@ -116,7 +116,7 @@ const HowIThink: FC = () => {
           <div className="md:col-span-5">
              <FeatureCard 
               title="Growth Protocol" 
-              subtitle="Water for plant growth, LeetCode for brain growth. Consistent practice is the secret to scaling both."
+              subtitle="Water for plant growth, LeetCode for brain growth."
               graphic={<GrowthMetaphor />}
               color="bg-neo-orange"
               icon={TrendingUp}
